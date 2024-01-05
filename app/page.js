@@ -1,8 +1,12 @@
+"use client"
+
+import Shop from "@/components/Shop/Shop";
+
 export default function Home() {
-  return (
-    <>
-      <p> Hello \
-      ]]</p>
-    </>
-  );
-}
+    return (
+      <>
+        <Shop/>
+      </>
+    );
+  }
+  
