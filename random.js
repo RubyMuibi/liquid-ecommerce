@@ -19,6 +19,8 @@ export default function Random () {
                 width="20"
                 height="20"
               />
+                            <div key={x.id} className={shopStyles.product}>{x.attributes.name}
+              <Link href={`/product/${x.id}`}> CLICK ME!</Link>
     </>
   );
 };

@@ -1,6 +1,11 @@
 "use client";
 import shopStyles from "./shop.module.css";
+
 import { useState, useEffect } from "react";
+
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
 
 export default function Shop() {
   const [products, setProducts] = useState([]);
@@ -58,11 +63,15 @@ export default function Shop() {
         {products.map((x) => {
           return (
             <>
-              <div key={x.id} className={shopStyles.product}>{x.attributes.name}</div>
+
+              <Link href={`/product/${x.id}`}  key={x.id} className={shopStyles.product}> {x.attributes.name}</Link>
+
+              
             </>
           );
         })}
 
+          
       </section>
     </>
   );
