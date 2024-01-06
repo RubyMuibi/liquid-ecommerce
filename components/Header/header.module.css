@@ -1,9 +1,11 @@
 
-
 .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    
+    
 }
 
 .headerOptions {
@@ -17,6 +19,10 @@
     padding: 0px 16px;
     border-radius: 2px;
     cursor: pointer;
+    position: fixed;
+    top: 5; 
+    right: 0;
+    margin-right: 20px;
 }
 
 .headerOptions p:hover {

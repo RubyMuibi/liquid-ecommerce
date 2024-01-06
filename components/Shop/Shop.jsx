@@ -5,9 +5,11 @@ import { useState, useEffect } from "react";
 export default function Shop() {
   const [products, setProducts] = useState([]);
 
-  const [shirts, setShirts] = useState(products);
+  const [shirts, setShirts] = useState([]);
 
-  const [pants, setPants] = useState(products);
+  const [pants, setPants] = useState([]);
+
+  const [ featuredProduct, setFeaturedProduct] = useState([])
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -16,41 +18,52 @@ export default function Shop() {
       const productData = responseData.data;
       setProducts(productData);
     };
-
     fetchProducts();
-  }, []);
+
+    const getShirts = () => {
+      const filterShirts = products.filter((x) => {
+        return x.attributes.category.includes("shirt");
+      });
+
+      setShirts(filterShirts);
+    };
+    getShirts();
+
+    const getPants = () => {
+      const filterPants = products.filter((x) => {
+        return x.attributes.category.includes("pant");
+      });
+
+      setPants(filterPants);
+    };
+    getPants();
+
+    const getFeaturedProduct = () => {
+      const filterProduct = products.filter((x) => {
+        return x.attributes.isFeatured === true;
+      });
+
+      setFeaturedProduct (filterProduct);
+    };
+    getFeaturedProduct();
+
+  }, [products]);
 
   console.log("products", products);
-
-  const getShirts = () => {
-    const filterShirts =  products.filter( (x) => {
-      x.attributes.category.includes("shirt")
-      setShirts(filterShirts)
-    })
-  }
-
-  const getPants = () => {
-    const filterPants =  products.filter( (x) => {
-      x.attributes.category.includes("pant")
-      setPants(filterPants)
-    })
-  }
 
   return (
     <>
       <section className={shopStyles.container}>
-        {shirts.map((x) => {
+
+        {products.map((x) => {
           return (
             <>
-              <div className={shopStyles.shirt}>
-                {x.attributes.name}
-              </div>
+              <div key={x.id} className={shopStyles.product}>{x.attributes.name}</div>
             </>
           );
         })}
-      </section>
 
-      <section></section>
+      </section>
     </>
   );
 }
