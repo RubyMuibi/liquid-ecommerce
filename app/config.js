@@ -1,4 +1,4 @@
 
-const config = {apiUrl: "http://127.0.0.1:1337"};
+const config = {apiUrl: "https://liquid-api.onrender.com"};
 
 export default config;

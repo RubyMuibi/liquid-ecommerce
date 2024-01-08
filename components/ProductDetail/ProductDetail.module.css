@@ -35,8 +35,9 @@
     border: 1px solid black;
     border-radius: 6px;
     padding: 6px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
+    text-transform: uppercase;
 }
 
 .description  h1 {
@@ -46,7 +47,7 @@
 
 .description  h2 {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 
