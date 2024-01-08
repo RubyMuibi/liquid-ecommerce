@@ -2,11 +2,14 @@
 
 import ProductDetail from "@/components/ProductDetail/ProductDetail";
 
+
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
+import { useRouter } from 'next/navigation'
 
 export default function Product() {
   const params = useParams();
+  const router = useRouter();
 
   const [currentProduct, setCurrentProduct] = useState([]);
 
@@ -21,7 +24,7 @@ export default function Product() {
         return urlParams == x.id;
       });
 
-      setCurrentProduct(filterProduct);
+      filterProduct.length > 0 ? setCurrentProduct(filterProduct) : router.push('/');
 
     };
     fetchProductDetail();

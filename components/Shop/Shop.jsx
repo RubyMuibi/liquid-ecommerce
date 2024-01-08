@@ -1,10 +1,14 @@
 "use client";
 import shopStyles from "./shop.module.css";
+import Cart from "../Cart/Cart";
 
-import { useState, useEffect } from "react";
+import { CartContext } from "@/context/CartContext";
+import { CartModalContext } from "@/context/CartModalContext";
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { useState, useEffect, useContext } from "react";
+
+import Link from "next/link";
+import Image from "next/image";
 
 
 export default function Shop() {
@@ -14,7 +18,9 @@ export default function Shop() {
 
   const [pants, setPants] = useState([]);
 
-  const [ featuredProduct, setFeaturedProduct] = useState([])
+  const [featuredProduct, setFeaturedProduct] = useState([]);
+
+  const { cartModal, handleCartModal } = useContext(CartModalContext);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -48,30 +54,43 @@ export default function Shop() {
         return x.attributes.isFeatured === true;
       });
 
-      setFeaturedProduct (filterProduct);
+      setFeaturedProduct(filterProduct);
     };
     getFeaturedProduct();
-
   }, [products]);
 
-  console.log("products", products);
 
   return (
     <>
+     {cartModal && <Cart/> }
       <section className={shopStyles.container}>
-
         {products.map((x) => {
+          const imageURL = x.attributes.imageURL.image1;
           return (
             <>
+              <Link
+                href={`/product/${x.id}`}
+                key={x.id}
+                className={shopStyles.product}
+              >
 
-              <Link href={`/product/${x.id}`}  key={x.id} className={shopStyles.product}> {x.attributes.name}</Link>
+                  <div className={shopStyles.imageContainer}>
+                    <Image
+                      src={imageURL}
+                      width={250}
+                      height={300}
+                      alt="Picture of a cloth from Liquid store"
+                    />
+                  </div>
+                  <div className={shopStyles.info} >
+                  <p> {x.attributes.name} </p>
+                  <p> {x.attributes.price} </p>
+                  </div>
 
-              
+              </Link>
             </>
           );
         })}
-
-          
       </section>
     </>
   );

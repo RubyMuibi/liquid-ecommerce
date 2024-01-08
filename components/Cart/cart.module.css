@@ -1,0 +1,133 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+    height: 96vh; 
+    width: 25%; 
+    background-color: black;
+    color: white;
+    position: fixed; /* Stay in place */
+    z-index: 2;
+    top: 0;
+    right: 0;
+    padding: 16px;
+    overflow-x: hidden;
+    transition: 0.5s;
+    box-sizing: border-box;
+}
+
+.sectionA {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sectionA h1 {
+    font-size: 16px; 
+}
+
+.sectionB {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    margin-top: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid grey;
+}
+
+.sectionB h1  {
+    font-size: 14px; 
+    font-weight: 600;
+}
+.sectionB h2  {
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    opacity: 0.7; 
+}
+.sectionB h3  {
+    font-size: 14px; 
+    font-weight: 600;
+}
+
+.imageContainer {
+    padding: 2px;
+    border-radius: 3px;
+    border: 1px solid white;
+    background-color: white;
+}
+
+
+.quantityContainer {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid grey;
+    padding: 6px;
+
+    box-sizing: border-box;
+}
+
+.quantityContainer p {
+    color: white;
+    opacity: 0.8; 
+    cursor: pointer;
+}
+
+.quantityContainer h4 {
+    font-size: 12px; 
+    font-weight: 500;
+    color: white;
+}
+
+.sectionC {
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+}
+
+
+.summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid grey;
+}
+
+.summary  h1 {
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
+    opacity: 0.7; 
+}
+
+.summary  h2 {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+}
+
+.checkoutBtn {
+    margin-top: 25px;
+    border-radius: 12px;
+    background-color: white;
+    color: black;
+    border: 1px solid;
+    padding: 16px 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+@media (max-width: 1024px) {
+    .container {
+        width: 100%;
+        left: 0;
+    }
+}

@@ -1,16 +1,23 @@
 "use client";
 
 import productDetailStyles from "./ProductDetail.module.css";
+import Cart from "../Cart/Cart";
+import { CartModalContext } from "@/context/CartModalContext"; 
+import { CartContext } from "@/context/CartContext";
 
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Icon } from "@iconify/react";
 
 export default function ProductDetail({ currentProduct }) {
   const [showdropDown, setShowDropdown] = useState(false);
-
   const [size, setSize] = useState("S");
+
+  const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } =
+  useContext(CartContext);
+  const { cartModal, handleCartModal, handleShowCartModal } = useContext(CartModalContext);
 
   const sizeOptions = ["S", "M", "L", "XL"];
 
@@ -25,18 +32,18 @@ export default function ProductDetail({ currentProduct }) {
 
   return (
     <>
+     {cartModal && <Cart/> }
       {currentProduct.map((x) => {
         const imageURL = x.attributes.imageURL.image1;
         return (
           <>
             <main className={productDetailStyles.container}>
-              <section className={productDetailStyles.image}>
-                <p> {imageURL} </p>
+              <section className={productDetailStyles.imageContainer}>
                 <Image
-                  src= {imageURL}
-                  width={500}
+                  src={imageURL}
+                  width={400}
                   height={500}
-                  alt="Picture of the author"
+                  alt="Picture of a cloth from Liquid store"
                 />
               </section>
 
@@ -69,8 +76,12 @@ export default function ProductDetail({ currentProduct }) {
                       );
                     })}
 
-                  <div className={productDetailStyles.selectSize}>
-                    <h3 onClick={handleDropDown}> Select Size - {size} </h3>
+
+                  <div
+                    onClick={handleDropDown}
+                    className={productDetailStyles.selectSize}
+                  >
+                    <h3> Select Size - {size} </h3>
                     <Icon
                       icon="icomoon-free:point-down"
                       color="white"
@@ -80,7 +91,7 @@ export default function ProductDetail({ currentProduct }) {
                   </div>
 
                   <div className={productDetailStyles.addToCart}>
-                    <h3> Add to Cart - {x.attributes.price} </h3>
+                    <h3 onClick={() => { addToCart(x, size); handleShowCartModal() }}> Add to Cart - ${x.attributes.price} </h3>
                     <Icon
                       icon="icons8:buy"
                       color="black"
